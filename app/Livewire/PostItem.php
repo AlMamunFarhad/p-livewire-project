@@ -12,13 +12,21 @@ class PostItem extends Component
 
     public bool $edit = false;
 
-    public function destroy(int $id)
+    // public function destroy(int $id)
+    // {
+    //     $post = Post::find($id);
+    //     $this->authorize("delete", $post);
+    //     $post->delete();
+    //     $this->dispatch('deleting');
+    // }
+
+    public function destroy()
     {
-        $post = Post::find($id);
-        $this->authorize("delete", $post);
-        $post->delete();
+        $this->authorize("delete", $this->post);
+        $this->post->delete();
         $this->dispatch('deleting');
     }
+
     #[On('updating')]
     public function updating(bool $updating)
     {

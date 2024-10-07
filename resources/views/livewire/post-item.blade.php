@@ -14,7 +14,9 @@
     </td>
     <td class="px-5 py-4 text-start text-sm">{{ $post->created_at->diffForHumans() }}</td>
     <td class="px-5 py-4 text-center text-sm hover:bg-white">
-        <button wire:confirm="Are you sure to want to delete it?" wire:click="destroy({{ $post->id }})"
-            class="bg-red-500 py-2 px-4 text-white rounded-md hover:bg-red-600">Delete</button>
+        {{-- <button wire:confirm="Are you sure to want to delete it?" wire:click="destroy({{ $post->id }})"
+            class="bg-red-500 py-2 px-4 text-white rounded-md hover:bg-red-600">Delete</button> --}}
+            <button wire:confirm="Are you sure to want to delete it?" wire:click="destroy"
+                class="bg-red-500 py-2 px-4 text-white rounded-md hover:bg-red-600">Delete</button>
     </td>
 </tr>

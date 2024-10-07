@@ -4,20 +4,20 @@
         <form wire:submit.prevent="create" class="max-w-sm shadow-md px-5 py-12 rounded-lg" method="POST">
             <div class="mb-5">
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-                <input wire:model="title" name="title" type="text" id="title"
+                <input wire:model.blur="form.title" name="title" type="text" id="title"
                     class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 clear"
                     placeholder="Title" required />
-                    @error('title')
-                      <div class="text-red-500">{{$message}}</div>
-                    @enderror
+                @error('form.title')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-5">
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-                <textarea wire:model="description" class="rounded-lg w-full border border-gray-300 text-gray-900" name="description"
+                <textarea wire:model="form.body" class="rounded-lg w-full border border-gray-300 text-gray-900" name="description"
                     id="description" cols="39" rows="5"></textarea>
-                    @error('description')
-                    <div class="text-red-500">{{$message}}</div>
-                  @enderror
+                @error('form.body')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-btn pb-10">
                 <button type="submit"
@@ -39,12 +39,12 @@
             </thead>
             <tbody>
                 @foreach ($posts as $post)
-                    <livewire:post-item :post="$post" wire:key="{{$post->id}}" @deleting="$refresh"/>
+                    <livewire:post-item :post="$post" wire:key="{{ $post->id }}" @deleting="$refresh" />
                 @endforeach
             </tbody>
         </table>
         <div class="p-4">
-            {{ $posts->links(data : ['scrollTo' => false]) }}
+            {{ $posts->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
 
